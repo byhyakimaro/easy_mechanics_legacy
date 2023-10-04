@@ -1,5 +1,7 @@
 const utilsMYSQL = require("../lib/utils")
+
 const database = new utilsMYSQL()
+const { login } = require("../base/config")
 
 on('playerConnecting', async (name, setKickReason, deferrals) => {
     deferrals.defer()
@@ -31,7 +33,7 @@ on('playerConnecting', async (name, setKickReason, deferrals) => {
                 if (user.length) {
                     deferrals.done()
                 } else {
-                    deferrals.done(`approve your license to whitelist: ${licenseIdentifier}`)
+                    deferrals.done(`join in us discord ${login.discord_invite} and approve your license to whitelist: ${licenseIdentifier}`)
                     database.query(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
                 }
 

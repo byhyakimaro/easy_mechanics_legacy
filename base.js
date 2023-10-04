@@ -18,8 +18,8 @@ async function loadBase() {
     tablesDb.forEach(async table => {
       await database.query(`CREATE TABLE IF NOT EXISTS ${table}`)
     })
-
-} catch (error) {
+    
+  } catch (error) {
     console.log(error)
   }
 }

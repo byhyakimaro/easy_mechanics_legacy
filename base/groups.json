@@ -1,0 +1,44 @@
+{
+    "Owner": {
+        "sources": [
+            "owner.source",
+            "admin.source",
+            "mod.source"
+        ],
+        "type": "server"
+    },
+    "Admin": {
+        "sources": [
+            "admin.source",
+            "mod.source"
+        ],
+        "type": "server"
+    },
+    "Moderator": {
+        "sources": [
+            "mod.source"
+        ],
+        "type": "server"
+    },
+    "Police": {
+        "sources": [
+            "police.source"
+        ],
+        "type": "job",
+        "title": "Policia"
+    },
+    "Paramedico": {
+        "sources": [
+            "paramedico.source"
+        ],
+        "type": "job",
+        "title": "Paramedico"
+    },
+    "Advogado": {
+        "sources": [
+            "advogado.source"
+        ],
+        "type": "job",
+        "title": "Advogado"
+    }
+}

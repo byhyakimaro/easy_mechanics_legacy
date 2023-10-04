@@ -1,0 +1,9 @@
+{
+  "name": "mayhem",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}

@@ -1,0 +1,37 @@
+{
+    "Items": {
+        "guns": {},
+        "foods": {
+            "drink": {
+                "coke": {
+                    "name": "Coca",
+                    "animtime": 2,
+                    "prop": "",
+                    "fill": 1.2
+                }
+            },
+            "food": {
+                "bread": {
+                    "name": "Pão",
+                    "animtime": 2,
+                    "prop": "",
+                    "fill": 3
+                }
+            }
+        },
+        "drugs": {
+            "lsd": {
+                "name": "LSD",
+                "animtime": 1.2,
+                "anim": ""
+            }
+        },
+        "miscellaneous": {
+            "wheel": {
+                "name": "Roda",
+                "animtime": 2.4,
+                "anim": ""
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
-const { spawn_ } = require("./../base/settings.json");
-const { login_ } = require("../base/settings")
+const { spawn_ } = require("./../cfg/settings.json");
+const { login_ } = require("../cfg/settings")
 
 const proxyClass = require("../lib/proxy")
 const toolClass = require("../lib/tools")

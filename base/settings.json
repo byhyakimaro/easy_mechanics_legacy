@@ -1,5 +1,6 @@
 {
-  "login" : {
-    "message_register": "join in us discord.com/dfhjgkdfhg %name% and approve your license to whitelist: %licenseIdentifier%"
+  "login_" : {
+    "message_register": "join in us discord.com/dfhjgkdfhg %name% and approve your license to whitelist: %licenseIdentifier%",
+    "message_updated" : "Hello %name%. Your license is being checked."
   }
 }

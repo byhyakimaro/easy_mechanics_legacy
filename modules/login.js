@@ -1,6 +1,6 @@
-const { login } = require("../base/settings")
+const { login_ } = require("../base/settings")
 
-async function Login(name, setKickReason, deferrals, database) {
+async function login(name, setKickReason, deferrals, database) {
     deferrals.defer()
     const player = global.source;
 
@@ -31,7 +31,7 @@ async function Login(name, setKickReason, deferrals, database) {
                 if (user.length) {
                     deferrals.done()
                 } else {
-                    const deferralsMsg = login.message_register.replace(/%(\w+)%/g, function(match, p1) {
+                    const deferralsMsg = login_.message_register.replace(/%(\w+)%/g, function(match, p1) {
                         if (stringDynamics.hasOwnProperty(p1)) {
                             return stringDynamics[p1]
                         } else {
@@ -48,4 +48,4 @@ async function Login(name, setKickReason, deferrals, database) {
     }, 0)
 }
 
-module.exports = { Login }
+module.exports = { login }

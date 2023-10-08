@@ -1,7 +1,7 @@
-const utilsMYSQL = require("./lib/utils")
-const database = new utilsMYSQL()
+const utilsRoot = require("./lib/utils")
+const utils = new utilsRoot()
 
-const { Login } = require("./modules/login")
+const { login } = require("./modules/login")
 
 const tablesDb = [
   'userData (id INT AUTO_INCREMENT PRIMARY KEY, license VARCHAR(40), whitelist INT, time INT)',
@@ -13,14 +13,14 @@ const tablesDb = [
 
 async function loadBase() {
   try {
-    await database.connect('easymechanics')
-    
+    await utils.connect('easymechanics')
+
     tablesDb.forEach(async table => {
-      await database.query(`CREATE TABLE IF NOT EXISTS ${table}`)
+      await utils.query(`CREATE TABLE IF NOT EXISTS ${table}`)
     })
-    
-    on('playerConnecting', (...args) => Login(...args, database))
-    
+
+    on('playerConnecting', (...args) => login(...args, utils))
+
   } catch (error) {
     console.log(error)
   }

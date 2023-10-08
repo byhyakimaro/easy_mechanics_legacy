@@ -52,7 +52,7 @@ const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const userSource = source
-	const userId = await utils.getId(userId)
+	const userId = await utils.getId(userSource)
 	const playerPed = GetPlayerPed(userId)
 
 	if (!playersInGame.includes(playerPed)) {

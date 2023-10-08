@@ -48,7 +48,9 @@ async function login(name, setKickReason, deferrals, utils) {
 }
 
 async function logout(reasonDrop, utils) {
-    console.log(reasonDrop)
+    utils.debug && console.log("Player "+reasonDrop)
+
+    
 }
 
 module.exports = { login, logout }

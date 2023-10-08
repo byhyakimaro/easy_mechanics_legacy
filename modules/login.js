@@ -1,6 +1,6 @@
 const { login_ } = require("../base/settings")
 
-async function login(name, setKickReason, deferrals, database) {
+async function login(name, setKickReason, deferrals, utils) {
     deferrals.defer()
     const player = global.source;
 
@@ -15,7 +15,7 @@ async function login(name, setKickReason, deferrals, database) {
         for (let i = 0; i < GetNumPlayerIdentifiers(player); i++) {
             const identifier = GetPlayerIdentifier(player, i);
 
-            database.debug && console.log(identifier)
+            utils.debug && console.log(identifier)
             if (identifier.includes('license:')) {
                 stringDynamics.licenseIdentifier = identifier.replace(/[^:]+:(.+)/, '$1');
             }
@@ -26,7 +26,7 @@ async function login(name, setKickReason, deferrals, database) {
             if (stringDynamics.licenseIdentifier === null) {
                 deferrals.done("You are not license to game.")
             } else {
-                const user = await database.query(`SELECT id, license, whitelist FROM userData WHERE license = "${stringDynamics.licenseIdentifier}" and whitelist = 1`)
+                const user = await utils.query(`SELECT id, license, whitelist FROM userData WHERE license = "${stringDynamics.licenseIdentifier}" and whitelist = 1`)
                 
                 if (user.length) {
                     deferrals.done()
@@ -40,7 +40,7 @@ async function login(name, setKickReason, deferrals, database) {
                     })
 
                     deferrals.done(deferralsMsg)
-                    database.query(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
+                    utils.query(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
                 }
 
             }

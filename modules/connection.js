@@ -53,7 +53,7 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 		const { x, y, z } = JSON.parse(queryPos[0].lastPos)
 		playersInGame.push(userId)
 
-		utils.debug && console.log(playersInGame, userId)
+		utils.debug && console.log(playersInGame)
 		SetEntityCoords(playerPed, x, y, z, true, false, false, false)
 	}	else {
 		

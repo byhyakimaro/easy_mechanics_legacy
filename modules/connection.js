@@ -1,6 +1,6 @@
 const { login_ } = require("../base/settings")
 
-async function login(name, setKickReason, deferrals, utils) {
+async function loginManager(name, setKickReason, deferrals, utils) {
 	deferrals.defer()
 	const userId = global.source;
 
@@ -50,7 +50,7 @@ async function login(name, setKickReason, deferrals, utils) {
 const { spawn_ } = require("./../base/settings.json");
 const playersInGame = []
 
-async function managerSpawn(model, heading, idx, x, y, z, utils) {
+async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const playerPed = GetPlayerPed(source)
 	
 	if(!playersInGame.includes(playerPed)) {
@@ -61,7 +61,7 @@ async function managerSpawn(model, heading, idx, x, y, z, utils) {
 	}
 }
 
-async function logout(reasonDrop, utils) {
+async function logoutManager(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop)
 	const userId = global.source;
 	const playerPed = GetPlayerPed(source)
@@ -70,4 +70,4 @@ async function logout(reasonDrop, utils) {
 	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} WHERE id = '${userId}'`)
 }
 
-module.exports = { login, managerSpawn, logout }
+module.exports = { loginManager, spawnManager, logoutManager }

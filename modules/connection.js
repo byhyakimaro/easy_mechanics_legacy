@@ -40,7 +40,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 				} else {
 					deferrals.done(deferralsMsg)
 
-					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
+					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time, lastPos) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)}, ["x":0,"y":0,"z":0])`)
 				}
 
 			}
@@ -65,9 +65,11 @@ async function logoutManager(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop)
 	const userId = global.source;
 	const playerPed = GetPlayerPed(source)
+	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 
 	playersInGame.splice(playersInGame.indexOf(playerPed), 1)
-	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} WHERE id = '${userId}'`)
+	utils.queryDb(`UPDATE userData SET last_cds = '${JSON.stringify([playerX, playerY, playerZ])}' WHERE id = '${userId}'`)
+	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} AND WHERE id = '${userId}'`)
 }
 
 module.exports = { loginManager, spawnManager, logoutManager }

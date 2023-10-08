@@ -23,7 +23,7 @@ async function loadBase() {
 
     on('playerConnecting', (...args) => login(...args, utils))
     on('playerDropped', (...args) => logout(...args, utils))
-    // onNet('EASY:SpawnPlayer', ({model, x, y, z}) => console.log(model, x, y, z))
+
     onNet('EASY:SpawnPlayer', (...args) => console.log(...args))
     
   } catch (error) {

@@ -2,7 +2,7 @@ const { login_ } = require("../base/settings")
 
 async function login(name, setKickReason, deferrals, utils) {
     deferrals.defer()
-    const player = global.source;
+    const userId = global.source;
 
     setTimeout(() => {
         const stringDynamics = {
@@ -10,8 +10,8 @@ async function login(name, setKickReason, deferrals, utils) {
             licenseIdentifier: null
         }
         
-        for (let i = 0; i < GetNumPlayerIdentifiers(player); i++) {
-            const identifier = GetPlayerIdentifier(player, i);
+        for (let i = 0; i < GetNumPlayerIdentifiers(userId); i++) {
+            const identifier = GetPlayerIdentifier(userId, i);
             
             utils.debug && console.log(identifier)
             if (identifier.includes('license:')) {
@@ -48,11 +48,10 @@ async function login(name, setKickReason, deferrals, utils) {
 }
 
 async function logout(reasonDrop, utils) {
-    const player = global.source;
+    utils.debug && console.log(reasonDrop)
+    const userId = global.source;
 
-    utils.debug && console.log("Player "+reasonDrop)
-
-    console.log(player)
+    console.log(GetNumPlayerIdentifiers(userId))
 }
 
 module.exports = { login, logout }

@@ -2,7 +2,6 @@ const utilsRoot = require("./lib/utils")
 const utils = new utilsRoot()
 
 const { login, logout } = require("./modules/connection")
-require("./modules/commands")
 
 const tablesDb = [
   'userData (id INT AUTO_INCREMENT PRIMARY KEY, license VARCHAR(40), whitelist INT, time INT)',

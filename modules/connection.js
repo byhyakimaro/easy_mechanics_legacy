@@ -60,7 +60,7 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 }
 
 async function logoutManager(reasonDrop, utils) {
-	utils.debug && console.log(reasonDrop)
+	utils.debug && console.log(reasonDrop, playersInGame)
 
 	const userSource = source
 	const userId = await utils.getId(userSource)

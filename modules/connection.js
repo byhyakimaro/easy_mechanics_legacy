@@ -51,7 +51,7 @@ async function logout(reasonDrop, utils) {
     utils.debug && console.log(reasonDrop)
     const userId = global.source;
 
-    utils.queryDb(`UPDATE userData SET spawn = ${Math.floor(Date.now() / 1000)} WHERE id = '${userId}'`)
+    utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} WHERE id = '${userId}'`)
 }
 
 module.exports = { login, logout }

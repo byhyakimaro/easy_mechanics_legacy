@@ -1,5 +1,5 @@
-const utilsRoot = require("./lib/utils")
-const utils = new utilsRoot()
+const utilsClass = require("./lib/utils")
+const utils = new utilsClass()
 
 const { loginManager, spawnManager, logoutManager } = require("./modules/connection")
 require("./modules/commands")

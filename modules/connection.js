@@ -1,7 +1,8 @@
 const { spawn_ } = require("./../base/settings.json");
 const { login_ } = require("../base/settings")
 
-const { getId } = require("../lib/proxy")
+const proxyClass = require("../lib/proxy")
+const proxy = new proxyClass()
 
 async function loginManager(name, setKickReason, deferrals, utils) {
 	deferrals.defer()
@@ -44,16 +45,17 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {
+
 	const userSourceInGame = source
 	const playerPed = GetPlayerPed(userSourceInGame)
-	const userId = await getId(userSourceInGame, utils)
+	const userId = await proxy.getId(userSourceInGame, utils)
 
 	if (!playersInGame.includes(userId)) {
 		const queryPos = await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`)
 		const { x, y, z } = JSON.parse(queryPos[0].lastPos)
 		playersInGame.push(userId)
 
-		utils.debug && console.log(playersInGame)
+		utils.debug && console.log("Joined", playersInGame)
 		SetEntityCoords(playerPed, x, y, z, true, false, false, false)
 	}	else {
 		
@@ -66,7 +68,7 @@ async function logoutManager(reasonDrop, utils) {
 
 	const userSourceInGame = source
 	const playerPed = GetPlayerPed(userSourceInGame)
-	const userId = await getId(userSourceInGame, utils)
+	const userId = await proxy.getId(userSourceInGame, utils)
 
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 	playersInGame.splice(playersInGame.indexOf(userId), 1)

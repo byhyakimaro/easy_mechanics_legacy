@@ -55,7 +55,7 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const playerPed = GetPlayerPed(userId)
 
 	if (!playersInGame.includes(playerPed)) {
-		const { x, y, z } = JSON.parse( (await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`) )[0].lastPos)
+		const { x, y, z } = JSON.parse((await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`))[0].lastPos)
 		playersInGame.push(playerPed)
 
 		utils.debug && console.log(playersInGame)

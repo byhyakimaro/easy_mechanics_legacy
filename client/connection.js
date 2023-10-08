@@ -1,0 +1,1 @@
+on('playerSpawned', (...args) => console.log(...args))

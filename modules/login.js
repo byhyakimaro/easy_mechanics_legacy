@@ -28,6 +28,8 @@ async function Login(name, setKickReason, deferrals, database) {
                 if (user.length) {
                     deferrals.done()
                 } else {
+                    console.log(login.message_register.replace(/%(.*?)%/g, '${$1}'))
+
                     deferrals.done(`join in us discord ${login.discord_invite} and approve your license to whitelist: ${licenseIdentifier}`)
                     database.query(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
                 }

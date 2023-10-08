@@ -13,7 +13,7 @@ const tablesDb = [
 
 async function loadBase() {
   try {
-    const dbConnect = await database.connect('mayhem')
+    await database.connect('mayhem')
     
     tablesDb.forEach(async table => {
       await database.query(`CREATE TABLE IF NOT EXISTS ${table}`)

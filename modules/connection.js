@@ -40,7 +40,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 				} else {
 					deferrals.done(deferralsMsg)
 
-					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time, lastPos) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)}, "${{ x: 0, y: 0, z: 0 }}")`)
+					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time, lastPos) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)}, "${JSON.stringify({ x: 0, y: 0, z: 0 })}")`)
 				}
 
 			}

@@ -2,5 +2,10 @@
   "login_" : {
     "message_register": "join in us discord.com/dfhjgkdfhg %name% and approve your license to whitelist: %licenseIdentifier%",
     "message_done" : "Hello %name%. Your license is being checked."
+  },
+  "spawn_" : {
+    "x": 159.74505615234375, 
+    "y": -981.99560546875, 
+    "z": 30.0886230468775
   }
 }

@@ -26,7 +26,8 @@ async function loadBase() {
 
     onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => {
       
-      console.log(heading)
+      console.log({ x, y, z })
+      SetEntityCoords(model, 0, 0, 0, true, false, false, false)
     })
     
   } catch (error) {

@@ -57,7 +57,7 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 	if (!playersInGame.includes(playerPed)) {
 		const queryPos = await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`)
 		// const { x, y, z } = JSON.parse(queryPos[0].lastPos)
-		// playersInGame.push(playerPed)
+		playersInGame.push(playerPed)
 
 		utils.debug && console.log(queryPos)
 		// SetEntityCoords(playerPed, x, y, z, true, false, false, false)

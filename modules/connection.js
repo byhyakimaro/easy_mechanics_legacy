@@ -47,8 +47,14 @@ async function login(name, setKickReason, deferrals, utils) {
 	}, 0)
 }
 
-async function managerSpawn(...args) {
-	console.log(...args)
+const { spawn_ } = require("./../base/settings.json");
+const playersInGame = {}
+
+async function managerSpawn(model, heading, idx, x, y, z, utils) {
+	const playerPed = GetPlayerPed(source)
+	
+	console.log({ x, y, z })
+	SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
 }
 
 async function logout(reasonDrop, utils) {

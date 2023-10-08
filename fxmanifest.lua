@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5' 
 
-author 'Murilin'
+author 'hyakimaro'
 description 'EasyMechanics Framework'
 version '1.0.0'
 

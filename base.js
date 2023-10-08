@@ -13,7 +13,7 @@ const tablesDb = [
 
 async function loadBase() {
   try {
-    await database.connect('mayhem')
+    await database.connect('easymechanics')
     
     tablesDb.forEach(async table => {
       await database.query(`CREATE TABLE IF NOT EXISTS ${table}`)
@@ -24,5 +24,4 @@ async function loadBase() {
   } catch (error) {
     console.log(error)
   }
-}
-loadBase()
+}; loadBase()

@@ -27,7 +27,7 @@ async function login(name, setKickReason, deferrals, utils) {
             if (stringDynamics.licenseIdentifier === null) {
                 deferrals.done("You are not license to game.")
             } else {
-                const user = await utils.query(`SELECT id, license, whitelist FROM userData WHERE license = "${stringDynamics.licenseIdentifier}"`)
+                const user = await utils.queryDb(`SELECT id, license, whitelist FROM userData WHERE license = "${stringDynamics.licenseIdentifier}"`)
                 const deferralsMsg = utils.dynamicRegex(login_.message_register, stringDynamics)
                 
                 if (user.length) {
@@ -39,7 +39,7 @@ async function login(name, setKickReason, deferrals, utils) {
                 } else {
                     deferrals.done(deferralsMsg)
 
-                    utils.query(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
+                    utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)
                 }
 
             }

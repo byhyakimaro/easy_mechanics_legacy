@@ -2,6 +2,7 @@ const utilsRoot = require("./lib/utils")
 const utils = new utilsRoot()
 
 const { login, logout } = require("./modules/connection")
+const { managerEvents } = require('./modules/events')
 require("./modules/commands")
 
 const tablesDb = [
@@ -24,12 +25,7 @@ async function loadBase() {
     on('playerConnecting', (...args) => login(...args, utils))
     on('playerDropped', (...args) => logout(...args, utils))
 
-    onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => {
-      
-      console.log({ x, y, z })
-      // SetEntityCoordsNoOffset(model, 0, 0, 0, true, false, false)
-    })
-    
+    managerEvents(utils)
   } catch (error) {
     console.log(error)
   }

@@ -13,8 +13,9 @@ const tablesDb = [
 
 async function loadBase() {
   try {
+    
     await utils.connectDb('easymechanics')
-
+    
     tablesDb.forEach(async table => {
       await utils.queryDb(`CREATE TABLE IF NOT EXISTS ${table}`)
     })

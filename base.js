@@ -27,7 +27,7 @@ async function loadBase() {
     onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => {
       
       console.log({ x, y, z })
-      SetEntityCoords(model, 0, 0, 0, true, false, false, false)
+      // SetEntityCoordsNoOffset(model, 0, 0, 0, true, false, false)
     })
     
   } catch (error) {

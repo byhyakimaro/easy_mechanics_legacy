@@ -5,19 +5,10 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 	deferrals.defer()
 	const userId = global.source;
 
-	setTimeout(() => {
+	setTimeout(async() => {
 		const stringDynamics = {
 			name: name,
-			licenseIdentifier: null
-		}
-
-		for (let i = 0; i < GetNumPlayerIdentifiers(userId); i++) {
-			const identifier = GetPlayerIdentifier(userId, i);
-
-			utils.debug && console.log(identifier)
-			if (identifier.includes('license:')) {
-				stringDynamics.licenseIdentifier = identifier.replace(/[^:]+:(.+)/, '$1');
-			}
+			licenseIdentifier: await this.getIdentifier(source, 'license')
 		}
 
 		const deferralsMsgUpdate = utils.dynamicRegex(login_.message_done, stringDynamics)
@@ -58,9 +49,9 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 	if (!playersInGame.includes(playerPed)) {
 		const queryPos = await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`)
 		const { x, y, z } = JSON.parse(queryPos[0].lastPos)
-		playersInGame.push(playerPed)
+		playersInGame.push(userId)
 
-		utils.debug && console.log(playersInGame)
+		utils.debug && console.log(playersInGame, userId)
 		SetEntityCoords(playerPed, x, y, z, true, false, false, false)
 	}	else {
 		
@@ -70,8 +61,11 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 
 async function logoutManager(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop)
-	const userId = global.source;
-	const playerPed = GetPlayerPed(source)
+
+	const userSource = source
+	const userId = await utils.getId(userSource)
+	const playerPed = GetPlayerPed(userId)
+
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 
 	playersInGame.splice(playersInGame.indexOf(playerPed), 1)

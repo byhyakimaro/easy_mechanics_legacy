@@ -10,7 +10,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 	setTimeout(async() => {
 		const stringDynamics = {
 			name: name,
-			licenseIdentifier: await this.getIdentifier(userSource, 'license')
+			licenseIdentifier: await utils.getIdentifier(userSource, 'license')
 		}
 		utils.debug && console.log(stringDynamics.licenseIdentifier)
 

@@ -5,7 +5,7 @@ const { loginManager, spawnManager, logoutManager } = require("./modules/connect
 require("./modules/commands")
 
 const tablesDb = [
-  'userData (id INT AUTO_INCREMENT PRIMARY KEY, license VARCHAR(40), whitelist INT, time INT, lastPos TEXT)',
+  'userData (id INT AUTO_INCREMENT PRIMARY KEY, license VARCHAR(40), whitelist INT, time INT, lastPos VARCHAR(90))',
   // 'playerData (id INT AUTO_INCREMENT PRIMARY KEY, data VARCHAR(255))',
   // 'playerInv (id INT AUTO_INCREMENT PRIMARY KEY, data VARCHAR(255))',
   // 'chest (chest VARCHAR(255) PRIMARY KEY, data VARCHAR(255))',

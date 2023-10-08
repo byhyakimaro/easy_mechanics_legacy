@@ -70,7 +70,7 @@ async function logoutManager(reasonDrop, utils) {
 
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 
-	playersInGame.splice(playersInGame.indexOf(playerPed), 1)
+	playersInGame.splice(playersInGame.indexOf(userId), 1)
 	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)}, lastPos = '${JSON.stringify({ x: playerX, y: playerY, z: playerZ })}' WHERE id = '${userId}'`)
 }
 

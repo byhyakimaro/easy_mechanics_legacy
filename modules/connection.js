@@ -51,13 +51,16 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {
-	const playerPed = GetPlayerPed(source)
+	const userId = global.source;
+	const playerPed = GetPlayerPed(userId)
 
 	if (!playersInGame.includes(playerPed)) {
+		const lastPos = utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`)
 		playersInGame.push(playerPed)
 
-		utils.debug && console.log(playersInGame)
+		utils.debug && console.log(playersInGame, lastPos)
 	
+
 	}	else {
 		
 		SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)

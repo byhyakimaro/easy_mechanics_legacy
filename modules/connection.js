@@ -45,8 +45,8 @@ const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const userSource = source
+	const playerPed = GetPlayerPed(userSource)
 	const userId = await getId(userSource, utils)
-	const playerPed = GetPlayerPed(userId)
 
 	if (!playersInGame.includes(userId)) {
 		const queryPos = await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`)
@@ -65,8 +65,8 @@ async function logoutManager(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop, playersInGame)
 
 	const userSource = source
+	const playerPed = GetPlayerPed(userSource)
 	const userId = await getId(userSource, utils)
-	const playerPed = GetPlayerPed(userId)
 
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 	playersInGame.splice(playersInGame.indexOf(userId), 1)

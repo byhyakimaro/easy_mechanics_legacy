@@ -1,9 +1,7 @@
 const utilsClass = require("./lib/utils")
-const ManagerCommands = require("./modules/commands")
+const ManagerEvents = require("./modules/events")
 
 const utils = new utilsClass()
-
-const { loginManager, spawnManager, logoutManager } = require("./modules/connection")
 
 const tablesDb = [
   'userData (id INT AUTO_INCREMENT PRIMARY KEY, license VARCHAR(40), whitelist INT, time INT, lastPos VARCHAR(90))',
@@ -21,12 +19,7 @@ async function loadBase() {
     tablesDb.forEach(async table => {
       await utils.queryDb(`CREATE TABLE IF NOT EXISTS ${table}`)
     })
-
-    new ManagerCommands(utils).load()
-    
-    on('playerConnecting', (...args) => loginManager(...args, utils))
-    onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => spawnManager(model, heading, idx, x, y, z, utils))
-    on('playerDropped', (...args) => logoutManager(...args, utils))
+    new ManagerEvents(utils).load()
   
   } catch (error) {
     console.log(error)

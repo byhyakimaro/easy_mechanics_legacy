@@ -10,10 +10,10 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 			name: name,
 			licenseIdentifier: null
 		}
-		
+
 		for (let i = 0; i < GetNumPlayerIdentifiers(userId); i++) {
 			const identifier = GetPlayerIdentifier(userId, i);
-			
+
 			utils.debug && console.log(identifier)
 			if (identifier.includes('license:')) {
 				stringDynamics.licenseIdentifier = identifier.replace(/[^:]+:(.+)/, '$1');
@@ -30,17 +30,17 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 			} else {
 				const user = await utils.queryDb(`SELECT id, license, whitelist FROM userData WHERE license = "${stringDynamics.licenseIdentifier}"`)
 				const deferralsMsg = utils.dynamicRegex(login_.message_register, stringDynamics)
-				
+
 				if (user.length) {
-					if( user[0].whitelist != 1) {
-						deferrals.done(deferralsMsg) 
-					} else { 
+					if (user[0].whitelist != 1) {
+						deferrals.done(deferralsMsg)
+					} else {
 						deferrals.done()
 					}
 				} else {
 					deferrals.done(deferralsMsg)
 
-					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time, lastPos) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)}, ["x":0,"y":0,"z":0])`)
+					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time, lastPos) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)}, ${JSON.stringify({ x: 0, y: 0, z: 0 })})`)
 				}
 
 			}
@@ -52,10 +52,10 @@ const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const playerPed = GetPlayerPed(source)
-	
-	if(!playersInGame.includes(playerPed)) {
+
+	if (!playersInGame.includes(playerPed)) {
 		playersInGame.push(playerPed)
-	
+
 		utils.debug && console.log({ x, y, z }, playersInGame)
 		SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
 	}

@@ -2,7 +2,6 @@ const utilsClass = require("./lib/utils")
 const ManagerCommands = require("./modules/commands")
 
 const utils = new utilsClass()
-const commands = new ManagerCommands()
 
 const { loginManager, spawnManager, logoutManager } = require("./modules/connection")
 
@@ -23,8 +22,8 @@ async function loadBase() {
       await utils.queryDb(`CREATE TABLE IF NOT EXISTS ${table}`)
     })
 
-    commands(utils).load()
-
+    new ManagerCommands(utils).load()
+    
     on('playerConnecting', (...args) => loginManager(...args, utils))
     onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => spawnManager(model, heading, idx, x, y, z, utils))
     on('playerDropped', (...args) => logoutManager(...args, utils))

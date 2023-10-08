@@ -1,14 +1,16 @@
 const { spawn_ } = require("./../base/settings.json");
 const { login_ } = require("../base/settings")
 
+const { getId } = require("../lib/proxy")
+
 async function loginManager(name, setKickReason, deferrals, utils) {
 	deferrals.defer()
-	const userId = global.source;
+	const userSource = source
 
 	setTimeout(async() => {
 		const stringDynamics = {
 			name: name,
-			licenseIdentifier: await this.getIdentifier(source, 'license')
+			licenseIdentifier: await this.getIdentifier(userSource, 'license')
 		}
 
 		const deferralsMsgUpdate = utils.dynamicRegex(login_.message_done, stringDynamics)
@@ -43,7 +45,7 @@ const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const userSource = source
-	const userId = await utils.getId(userSource)
+	const userId = await getId(userSource, utils)
 	const playerPed = GetPlayerPed(userId)
 
 	if (!playersInGame.includes(userId)) {
@@ -63,7 +65,7 @@ async function logoutManager(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop, playersInGame)
 
 	const userSource = source
-	const userId = await utils.getId(userSource)
+	const userId = await getId(userSource, utils)
 	const playerPed = GetPlayerPed(userId)
 
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)

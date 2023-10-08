@@ -1,4 +1,4 @@
-const { login } = require("../base/config")
+const { login } = require("../base/settings")
 
 async function Login(name, setKickReason, deferrals, database) {
     deferrals.defer()

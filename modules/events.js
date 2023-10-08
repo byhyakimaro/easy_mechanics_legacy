@@ -1,12 +1,15 @@
-const { spawn_ } = require("./../base/settings.json");
+// const { spawn_ } = require("./../base/settings.json");
 
-function managerEvents(utils) {
+// const playersInGame = {}
 
-  onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => {
-      
-    console.log({ x, y, z })
-    SetEntityCoords(GetPlayerPed(source), spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
-  })
-}
+// function managerEvents(utils) {
 
-module.exports = { managerEvents }
+//   onNet('EASY:SpawnPlayer', ({model, heading, idx, x, y, z}) => {
+//     const playerPed = GetPlayerPed(source)
+    
+//     console.log({ x, y, z })
+//     SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
+//   })
+// }
+
+// module.exports = { managerEvents }

@@ -1,4 +1,4 @@
-on('playerSpawned', (...args) => {
-  console.log(...args)
-  emitNet('EASY:SpawnPlayer', ...args)
-})
+// on('playerSpawned', (...args) => {
+//   console.log(...args)
+//   emitNet('EASY:SpawnPlayer', ...args)
+// })

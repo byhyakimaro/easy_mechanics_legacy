@@ -47,6 +47,10 @@ async function login(name, setKickReason, deferrals, utils) {
 	}, 0)
 }
 
+async function managerSpawn() {
+
+}
+
 async function logout(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop)
 	const userId = global.source;
@@ -54,4 +58,4 @@ async function logout(reasonDrop, utils) {
 	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} WHERE id = '${userId}'`)
 }
 
-module.exports = { login, logout }
+module.exports = { login, managerSpawn, logout }

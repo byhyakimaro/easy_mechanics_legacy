@@ -1,8 +1,7 @@
 const utilsRoot = require("./lib/utils")
 const utils = new utilsRoot()
 
-const { login, logout } = require("./modules/connection")
-const { managerEvents } = require('./modules/events')
+const { login, managerSpawn, logout } = require("./modules/connection")
 require("./modules/commands")
 
 const tablesDb = [
@@ -23,9 +22,9 @@ async function loadBase() {
     })
 
     on('playerConnecting', (...args) => login(...args, utils))
+    on('respawnPlayerPedEvent', (...args) => managerSpawn(...args, utils))
     on('playerDropped', (...args) => logout(...args, utils))
-
-    managerEvents(utils)
+  
   } catch (error) {
     console.log(error)
   }

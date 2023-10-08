@@ -53,8 +53,12 @@ const playersInGame = {}
 async function managerSpawn(model, heading, idx, x, y, z, utils) {
 	const playerPed = GetPlayerPed(source)
 	
-	console.log({ x, y, z })
-	SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
+	if(!playersInGame.includes(playerPed)) {
+		playersInGame.push(playerPed)
+	
+		console.log({ x, y, z }, playersInGame)
+		SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
+	}
 }
 
 async function logout(reasonDrop, utils) {

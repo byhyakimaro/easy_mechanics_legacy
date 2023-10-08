@@ -5,21 +5,22 @@ async function login(name, setKickReason, deferrals, utils) {
     const player = global.source;
 
     setTimeout(() => {
-        deferrals.update(`Hello ${name}. Your license is being checked.`)
-
         const stringDynamics = {
             name: name,
             licenseIdentifier: null
         }
-
+        
         for (let i = 0; i < GetNumPlayerIdentifiers(player); i++) {
             const identifier = GetPlayerIdentifier(player, i);
-
+            
             utils.debug && console.log(identifier)
             if (identifier.includes('license:')) {
                 stringDynamics.licenseIdentifier = identifier.replace(/[^:]+:(.+)/, '$1');
             }
         }
+        const deferralsMsgUpdate = utils.dynamicRegex(login_.message_updated, stringDynamics)
+
+        deferrals.update(deferralsMsgUpdate)
 
         //pretend to be a wait
         setTimeout(async () => {
@@ -31,13 +32,7 @@ async function login(name, setKickReason, deferrals, utils) {
                 if (user.length) {
                     deferrals.done()
                 } else {
-                    const deferralsMsg = login_.message_register.replace(/%(\w+)%/g, function(match, p1) {
-                        if (stringDynamics.hasOwnProperty(p1)) {
-                            return stringDynamics[p1]
-                        } else {
-                            return match
-                        }
-                    })
+                    const deferralsMsg = utils.dynamicRegex(login_.message_register, stringDynamics)
 
                     deferrals.done(deferralsMsg)
                     utils.query(`INSERT IGNORE INTO userData (license, whitelist, time) VALUES ("${stringDynamics.licenseIdentifier}", 0, ${Math.floor(Date.now() / 1000)})`)

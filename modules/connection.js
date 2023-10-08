@@ -1,3 +1,4 @@
+const { spawn_ } = require("./../base/settings.json");
 const { login_ } = require("../base/settings")
 
 async function loginManager(name, setKickReason, deferrals, utils) {
@@ -47,7 +48,6 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 	}, 0)
 }
 
-const { spawn_ } = require("./../base/settings.json");
 const playersInGame = []
 
 async function spawnManager(model, heading, idx, x, y, z, utils) {

@@ -2,9 +2,9 @@ const { spawn_ } = require("./../base/settings.json");
 const { login_ } = require("../base/settings")
 
 const proxyClass = require("../lib/proxy")
-const proxy = new proxyClass()
-
 const toolClass = require("../lib/tools")
+
+const proxy = new proxyClass()
 const tools = new toolClass()
 
 async function loginManager(name, setKickReason, deferrals, utils) {

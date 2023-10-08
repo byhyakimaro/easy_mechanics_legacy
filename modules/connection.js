@@ -56,7 +56,10 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 	if (!playersInGame.includes(playerPed)) {
 		playersInGame.push(playerPed)
 
-		utils.debug && console.log({ x, y, z }, playersInGame)
+		utils.debug && console.log(playersInGame)
+	
+	}	else {
+		
 		SetEntityCoords(playerPed, spawn_.x, spawn_.y, spawn_.z, true, false, false, false)
 	}
 }

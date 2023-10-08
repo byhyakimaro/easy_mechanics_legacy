@@ -12,6 +12,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 			name: name,
 			licenseIdentifier: await this.getIdentifier(userSource, 'license')
 		}
+		utils.debug && console.log(stringDynamics.licenseIdentifier)
 
 		const deferralsMsgUpdate = utils.dynamicRegex(login_.message_done, stringDynamics)
 		deferrals.update(deferralsMsgUpdate)

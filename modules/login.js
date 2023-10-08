@@ -1,13 +1,8 @@
-const utilsMYSQL = require("../lib/utils")
-
-const database = new utilsMYSQL()
 const { login } = require("../base/config")
 
-on('playerConnecting', async (name, setKickReason, deferrals) => {
+async function Login(name, setKickReason, deferrals, database) {
     deferrals.defer()
     const player = global.source;
-
-    await database.connect('mayhem')
 
     setTimeout(() => {
         deferrals.update(`Hello ${name}. Your license is being checked.`)
@@ -40,4 +35,6 @@ on('playerConnecting', async (name, setKickReason, deferrals) => {
             }
         }, 0)
     }, 0)
-})
+}
+
+module.exports = { Login }

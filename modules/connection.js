@@ -64,7 +64,9 @@ async function managerSpawn(model, heading, idx, x, y, z, utils) {
 async function logout(reasonDrop, utils) {
 	utils.debug && console.log(reasonDrop)
 	const userId = global.source;
+	const playerPed = GetPlayerPed(source)
 
+	playersInGame.splice(playersInGame.indexOf(playerPed), 1)
 	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} WHERE id = '${userId}'`)
 }
 

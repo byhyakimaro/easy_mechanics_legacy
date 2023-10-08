@@ -47,8 +47,8 @@ async function login(name, setKickReason, deferrals, utils) {
 	}, 0)
 }
 
-async function managerSpawn() {
-
+async function managerSpawn(...args) {
+	console.log(...args)
 }
 
 async function logout(reasonDrop, utils) {

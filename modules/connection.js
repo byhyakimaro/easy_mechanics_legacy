@@ -48,7 +48,7 @@ async function login(name, setKickReason, deferrals, utils) {
 }
 
 const { spawn_ } = require("./../base/settings.json");
-const playersInGame = {}
+const playersInGame = []
 
 async function managerSpawn(model, heading, idx, x, y, z, utils) {
 	const playerPed = GetPlayerPed(source)

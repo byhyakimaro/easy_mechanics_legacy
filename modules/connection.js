@@ -68,8 +68,9 @@ async function logoutManager(reasonDrop, utils) {
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 
 	playersInGame.splice(playersInGame.indexOf(playerPed), 1)
-	utils.queryDb(`UPDATE userData SET last_cds = '${JSON.stringify([playerX, playerY, playerZ])}' WHERE id = '${userId}'`)
-	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)} AND WHERE id = '${userId}'`)
+	// utils.queryDb(`UPDATE userData SET last_cds = '${JSON.stringify([playerX, playerY, playerZ])}' WHERE id = '${userId}'`)
+	// utils.queryDb(`UPDATE userData SET time =  AND WHERE id = '${userId}'`)
+	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)}, lastPos = '${JSON.stringify({ x: 0, y: 0, z: 0 })}' WHERE id = '${userId}'`)
 }
 
 module.exports = { loginManager, spawnManager, logoutManager }

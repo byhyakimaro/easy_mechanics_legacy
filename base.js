@@ -1,7 +1,7 @@
 const utilsRoot = require("./lib/utils")
 const utils = new utilsRoot()
 
-const { login } = require("./modules/connection")
+const { login, logout } = require("./modules/connection")
 
 const tablesDb = [
   'userData (id INT AUTO_INCREMENT PRIMARY KEY, license VARCHAR(40), whitelist INT, time INT)',
@@ -20,7 +20,7 @@ async function loadBase() {
     })
 
     on('playerConnecting', (...args) => login(...args, utils))
-    on('playerDropped', (...args) => console.log(...args))
+    on('playerDropped', (...args) => logout(...args, utils))
     
   } catch (error) {
     console.log(error)

@@ -25,7 +25,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 			if (stringDynamics.licenseIdentifier === null) {
 				deferrals.done("You are not license to game.")
 			} else {
-				const user = await utils.queryDb(`SELECT id, license, whitelist FROM userData WHERE license = "${stringDynamics.licenseIdentifier}"`)
+				const user = await utils.queryDb(`SELECT id, license, whitelist FROM login WHERE license = "${stringDynamics.licenseIdentifier}"`)
 				const deferralsMsg = tools.dynamicRegex(login_.message_register, stringDynamics)
 
 				if (user.length) {
@@ -37,7 +37,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 				} else {
 					deferrals.done(deferralsMsg)
 
-					utils.queryDb(`INSERT IGNORE INTO userData (license, whitelist, time, lastPos) VALUES ('${stringDynamics.licenseIdentifier}', 0, ${Math.floor(Date.now() / 1000)}, '${JSON.stringify({ x: spawn_.x, y: spawn_.y, z: spawn_.z })}')`)
+					utils.queryDb(`INSERT IGNORE INTO login (license, whitelist, time, lastPos) VALUES ('${stringDynamics.licenseIdentifier}', 0, ${Math.floor(Date.now() / 1000)}, '${JSON.stringify({ x: spawn_.x, y: spawn_.y, z: spawn_.z })}')`)
 				}
 
 			}
@@ -54,7 +54,7 @@ async function spawnManager(model, heading, idx, x, y, z, utils) {
 	const userId = await proxy.getId(userSourceInGame, utils)
 
 	if (!playersInGame.includes(userId)) {
-		const queryPos = await utils.queryDb(`SELECT id, lastPos FROM userData WHERE id = '${userId}'`)
+		const queryPos = await utils.queryDb(`SELECT id, lastPos FROM login WHERE id = '${userId}'`)
 		const { x, y, z } = JSON.parse(queryPos[0].lastPos)
 		playersInGame.push(userId)
 
@@ -76,7 +76,7 @@ async function logoutManager(reasonDrop, utils) {
 	const [playerX, playerY, playerZ] = GetEntityCoords(playerPed)
 	playersInGame.splice(playersInGame.indexOf(userId), 1)
 
-	utils.queryDb(`UPDATE userData SET time = ${Math.floor(Date.now() / 1000)}, lastPos = '${JSON.stringify({ x: playerX, y: playerY, z: playerZ })}' WHERE id = '${userId}'`)
+	utils.queryDb(`UPDATE login SET time = ${Math.floor(Date.now() / 1000)}, lastPos = '${JSON.stringify({ x: playerX, y: playerY, z: playerZ })}' WHERE id = '${userId}'`)
 }
 
 module.exports = { loginManager, spawnManager, logoutManager }

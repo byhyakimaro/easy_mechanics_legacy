@@ -14,7 +14,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 	setTimeout(async() => {
 		const stringDynamics = {
 			name: name,
-			licenseIdentifier: await proxy.getIdentifier(userSource, 'license')
+			licenseIdentifier: await proxy.getIdentifier(userSource, 'license', utils)
 		}
 
 		const deferralsMsgUpdate = tools.dynamicRegex(login_.message_done, stringDynamics)

@@ -38,6 +38,7 @@ async function loginManager(name, setKickReason, deferrals, utils) {
 					deferrals.done(deferralsMsg)
 
 					utils.queryDb(`INSERT IGNORE INTO login (license, whitelist, time, lastPos) VALUES ('${stringDynamics.licenseIdentifier}', 0, ${Math.floor(Date.now() / 1000)}, '${JSON.stringify({ x: spawn_.x, y: spawn_.y, z: spawn_.z })}')`)
+					utils.queryDb(`INSERT IGNORE INTO groups (job, social) VALUES ('Unemployed', '')`)
 				}
 
 			}

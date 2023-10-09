@@ -1,48 +1,62 @@
 {
     "social": {
-        "Owner": {
+        "President": {
             "sources": [
-                "owner.source",
-                "admin.source",
-                "mod.source"
+                "owner.source"
             ],
-            "type": "server"
+            "type": "server",
+            "title": "President"
         },
-        "Admin": {
+        "Governor": {
             "sources": [
-                "admin.source",
-                "mod.source"
+                "admin.source"
             ],
-            "type": "server"
+            "type": "server",
+            "title": "Police"
         },
-        "Moderator": {
+        "Senate": {
             "sources": [
                 "mod.source"
             ],
-            "type": "server"
+            "type": "server",
+            "title": "Police"
+        },
+        "Citizen": {
+            "sources": [
+                "citizen.source"
+            ],
+            "type": "server",
+            "title": "Citizen"
         }
     },
-    "works": {
+    "job": {
         "Police": {
             "sources": [
                 "police.source"
             ],
             "type": "job",
-            "title": "Policia"
+            "title": "Police"
         },
-        "Paramedico": {
+        "Paramedic": {
             "sources": [
-                "paramedico.source"
+                "paramedic.source"
+            ],
+            "type": "work",
+            "title": "Paramedic"
+        },
+        "Attorney": {
+            "sources": [
+                "attorney.source"
             ],
             "type": "job",
-            "title": "Paramedico"
+            "title": "Attorney"
         },
-        "Advogado": {
+        "Unemployed": {
             "sources": [
-                "advogado.source"
+                "unemployed.source"
             ],
             "type": "job",
-            "title": "Advogado"
+            "title": "Unemployed"
         }
     }
 }
